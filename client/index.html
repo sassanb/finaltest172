@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Posts</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main>
+    <h1>Posts</h1>
+
+    <form name="posts">
+      <div class="textbox">
+        <input
+          type="text"
+          required
+          name="post-name"/>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>post title</label>
+      </div>
+
+    <div class="textbox">
+      <input
+        type="text"
+        required
+        name="post-pride"/>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>post body</label>
+    </div>
+
+
+    <label>post id</label> <input type="number" name="post-age">
+    <select name="select">
+      <option value="female" selected>female</option>
+      <option value="male">male</option>
+    </select>
+    <button>submit</button>
+    </form>
+
+    <div class="content">
+      <ul class="post-list"></ul>
+    </div>
+  </main>
+<script src="app.js"></script>
+</body>
+</html>
