@@ -33,7 +33,7 @@ var id = 0;
 var mongoose = require ("mongoose");
 var uristring = 'mongodb://localhost/test';
 // Set the uristring based on where the MongoDB is running.
-mongoose.connect(uristring, function (err, res)
+mongoose.connect(uristring, function (err, res)// this part is connecting to MongoDB
 {
   if (err)
   {
@@ -56,9 +56,19 @@ var PostSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+
+  author: {
+    type: String,
+    required: true
+  },
+
+  categories: {
+    type: String,
+    required: true
+  },
 });
 var Post = mongoose.model('post2', PostSchema);
-// implement back-end right here
+// this part is for back end.
 app.get('/posts', function(req, res)
 {
     Post.find({}, function(err, post)
@@ -72,7 +82,7 @@ app.get('/posts/:id', function (req, res) {
   res.json(post || {});
 });
 
-// this post function is for mongodb
+// this part of the post function is for mongodb
 app.post('/posts', function (req, res)
 {
   var post = new Post(req.body);
@@ -80,7 +90,7 @@ app.post('/posts', function (req, res)
   console.log(post);
   post.save();
   res.json(post2);
-  console.log("succesfully insert into mongodb");
+  console.log("succesfully put into mongodb");
 });
 
 app.put('/posts/:id', function (req, res)
@@ -95,8 +105,8 @@ app.put('/posts/:id', function (req, res)
   if (!posts[post]) {
     res.send();
   } else {
-    var updatedLion = _.assign(posts[post], update);
-    res.json(updatedLion);
+    var updated = _.assign(posts[post], update);
+    res.json(updated);
   }
 });
 
@@ -109,11 +119,10 @@ app.delete('/posts/:id', function (req, res)
   }
   else
   {
-    console.log("successfully deleted")
+    console.log("successfully was deleted")
     res.send(posts[post]);
     posts.splice(post, 1);
   }
 });
-
 
 module.exports = app;
