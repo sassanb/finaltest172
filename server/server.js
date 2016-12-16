@@ -8,13 +8,11 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var _ = require('lodash');
 // connect to mongoDB database
-// mongoose.connect(config.db.url);
 var db = require("mongojs");
-//Set - up global middleware
+//Set - setting up global middleware
  app.use(morgan('dev'));
  app.use(bodyParser.urlencoded({ extended: true }));
  app.use(bodyParser.json());
- // front end from client folder
 app.use(express.static('client'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -44,7 +42,19 @@ mongoose.connect(uristring, function (err, res)// this part is connecting to Mon
     console.log ('successfully connect to: ' + uristring);
   }
 });
+var userSchema= new mongoose.Schema({
+  user: {
+    type: String,
+    required: true,
+    unique: true
+    },
 
+    address: {
+      type: String,
+      required: true,
+      unique: true
+      },
+});
 var PostSchema = new mongoose.Schema({
   title: {
     type: String,
