@@ -13,12 +13,20 @@ var PostSchema = new Schema({
     required: true
   },
   // reference to the user who created this post
-  author: 
+  author:
         {type: Schema.Types.ObjectId,
          ref: 'user',
          required:true
         }
 
+        categories:
+   {
+   type: Schema.Types.ObjectId,
+   ref: 'category',
+   required:true
+   }
+
 });
+
 
 module.exports = mongoose.model('post', PostSchema);

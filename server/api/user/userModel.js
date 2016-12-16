@@ -6,6 +6,11 @@ var UserSchema = new Schema({
     type: String,
     unique: true,
     required: true
+  },
+  address: {
+	  type: String,
+	  required: true,
+	  trim: true
   }
 });
 

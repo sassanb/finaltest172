@@ -1,4 +1,5 @@
-
+var router = require('express').Router();
+var post = require("./post");
 var express = require('express');
 var app = express();
 var api = require('./api/api');
@@ -124,15 +125,32 @@ app.delete('/posts/:id', function (req, res)
 {
   var post = _.findIndex(posts, { id: req.params.id });
   if (!posts[post]) {
-    console.log("Error in deleting the post");
-    res.send("Error in deleting the post");
+    console.log("Error is occured for deleting the post");
+    res.send("Error is occured for deleting the post");
   }
   else
   {
-    console.log("successfully was deleted")
+    console.log("The post was successfully deleted")
     res.send(posts[post]);
     posts.splice(post, 1);
   }
 });
 
+router.get(function(req, res, next){
+	var err = new Error();
+	err.status = 500;
+	next(err);
+});
+
+
+router.use(function(err, req, res, next){
+	if(err.status !== 500){
+		return next();
+	}else{
+
+		res.send("invalid page");
+	}
+})
+
+module.exports = router;
 module.exports = app;
